@@ -259,4 +259,4 @@ ATTEST_RUN_LIVE_LLM=1 python -m pytest app/tests/test_workflow_live_models.py -v
 
 ## 许可
 
-未声明 LICENSE。如需使用、分发或商用，请先联系作者。
+本项目采用 [MIT 许可证](LICENSE)。
