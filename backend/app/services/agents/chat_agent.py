@@ -1106,7 +1106,33 @@ class ChatAgent(BaseAgent):
 
     def _asks_project_overview(self, message: str) -> bool:
         lowered = message.lower()
-        if any(token in lowered for token in ["issue", "pull request", "pr #", "ci", "未关闭", "待处理"]):
+        # 盘点、决策、审查类问题必须先经过模型路由，不能在这里被“项目概览”截走。
+        if any(
+            token in lowered
+            for token in [
+                "issue",
+                "pull request",
+                "pr #",
+                "ci",
+                "未关闭",
+                "待处理",
+                "现状",
+                "健康",
+                "发布",
+                "上线",
+                "合入",
+                "合并",
+                "阻塞",
+                "优先级",
+                "审查",
+                "风险",
+                "能不能",
+                "该先",
+                "决策",
+                "多 agent",
+                "交叉审",
+            ]
+        ):
             return False
         return any(
             token in lowered
